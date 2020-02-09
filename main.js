@@ -7,6 +7,7 @@ var exerciseButton = document.getElementById("exercise");
 var boxArray = [studyButton, meditateButton, exerciseButton];
 var startActBtn = document.getElementById("start-act-btn");
 var activeBtn = document.querySelector(".active");
+var warningPopUp = document.getElementById("warning-pop-up");
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
 secondsInput.addEventListener('keyup', onlyNumbersCheck);
@@ -20,7 +21,7 @@ function handleClick(event) {
   } else if (event.target.classList.contains('exercise')) {
     changeColors(event);
   } else if (event.target.classList.contains('start-act-btn')) {
-    checkInputFeilds(event)
+    checkInputFeilds(event);
   }
 }
 
@@ -46,15 +47,27 @@ function removeActiveState(clickedId) {
 }
 
 function onlyNumbersCheck(event) {
-  var replaceValue = minutesInput.value.replace("e", "");
-  console.log(minutesInput.value);
-  minutesInput.value = replaceValue;
-  console.log(minutesInput.value);
+  var replaceMinValue = minutesInput.value.replace('e', '');
+  var replaceSecValue = secondsInput.value.replace('e', '');
+  minutesInput.value = replaceMinValue;
+  secondsInput.value = replaceSecValue;
 }
 
 function checkInputFeilds(e) {
   e.preventDefault();
-  if ((minutesInput.value === 0) || (secondsInput.value === 0) || (textInput.value === 0)) {
-    alert("Did it!!")
+  var areBtnsClicked = checkCategoryBtns();
+  if (minutesInput.value == 0 || secondsInput.value == 0 || textInput.value == 0 || areBtnsClicked === false){
+    warningPopUp.innerHTML = `<img src="./assets/warning.svg" class="warning-img" alt="warning img">
+    <p class="warning">Please fill out all information!</p>`;
+  } else if (minutesInput.value > 0 && secondsInput.value > 0 && textInput.value > 0) {
+    warningPopUp.innerHTML = '';
+  }
+}
+
+function checkCategoryBtns() {
+  if (studyButton.classList.contains('active') || meditateButton.classList.contains('active') || exerciseButton.classList.contains('active')) {
+    return true
+  } else {
+    return false
   }
 }

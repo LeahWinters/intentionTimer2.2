@@ -9,7 +9,6 @@ var startActBtn = document.getElementById('start-act-btn');
 var activeBtn = document.querySelector('.active');
 var warningPopUp = document.getElementById('warning-pop-up');
 var timerPage = document.getElementById('create-new-activity');
-// 1st make grabber for timerCircle
 var circleColor = null;
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
@@ -19,16 +18,13 @@ document.addEventListener('click', handleClick);
 function handleClick(event) {
   if (event.target.classList.contains('study')) {
     changeColors(event);
-    // change circleColor to green
-    circleColor = "green";
+    circleColor = 'green';
   } else if (event.target.classList.contains('meditate')) {
     changeColors(event);
-    // change circleColor to purple
-    circleColor = "purple";
+    circleColor = 'purple';
   } else if (event.target.classList.contains('exercise')) {
     changeColors(event);
-    // change circleColor to pink circleColor = "pink"
-    circleColor = "pink";
+    circleColor = 'pink';
   } else if (event.target.classList.contains('start-act-btn')) {
     checkInputFields(event);
   }
@@ -63,16 +59,13 @@ function onlyNumbersCheck(event) {
 }
 
 function checkInputFields(e) {
-  console.log('checkInputFields fired')
   e.preventDefault();
   var areBtnsClicked = checkCategoryBtns();
   if (minutesInput.value == 0 || secondsInput.value == 0 || textInput.value == 0 || areBtnsClicked === false){
     warningPopUp.innerHTML = `<img src="./assets/warning.svg" class="warning-img" alt="warning img">
     <p class="warning">Please fill out all information!</p>`;
-    console.log('if')
   } else if (minutesInput.value > 0 && secondsInput.value > 0 && textInput.value.length > 0) {
     generateTimerPage();
-    console.log('else if')
   }
 }
 
@@ -86,8 +79,6 @@ function checkCategoryBtns() {
 }
 
 function generateTimerPage() {
-  console.log('generateTimerPage fired')
-  // 4th changeCircleColor()
   timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
   <p class="timer" id="timer"><span id="minutes">${minutesInput.value}:</span><span id="seconds">${secondsInput.value}</span></p>
   <div class="timer-circle-holder" id="timer-circle-holder">
@@ -98,12 +89,8 @@ function generateTimerPage() {
   changeCircleColor();
 }
 
-//2nd add 3 css classes for different color circle
-
-//3rd create new function changeCircleColor
 function changeCircleColor() {
   var timerCircle = document.getElementById('timer-circle');
-  console.log('changeCircleColor fired', timerCircle)
   if (circleColor === 'green') {
     timerCircle.classList.add('green-circle');
   } else if (circleColor === 'purple') {
@@ -112,7 +99,3 @@ function changeCircleColor() {
     timerCircle.classList.add('pink-circle');
   }
 }
-//conditionals (if/else) depending on cirlceColor variable
-//if circleColor is pink
-//timerCircle.classList.add('pink-circle') class of pink-color to timer-circle
-//

@@ -10,7 +10,6 @@ var activeBtn = document.querySelector('.active');
 var warningPopUp = document.getElementById('warning-pop-up');
 var timerPage = document.getElementById('create-new-activity');
 // 1st make grabber for timerCircle
-var timerCircle = document.getElementById('timer-circle');
 var circleColor = null;
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
@@ -63,17 +62,20 @@ function onlyNumbersCheck(event) {
   secondsInput.value = replaceSecValue;
 }
 
-function checkInputFields(event) {
-  event.preventDefault();
+function checkInputFields(e) {
+  console.log('checkInputFields fired')
+  e.preventDefault();
   var areBtnsClicked = checkCategoryBtns();
   if (minutesInput.value == 0 || secondsInput.value == 0 || textInput.value == 0 || areBtnsClicked === false){
     warningPopUp.innerHTML = `<img src="./assets/warning.svg" class="warning-img" alt="warning img">
     <p class="warning">Please fill out all information!</p>`;
-  } else if (minutesInput.value > 0 && secondsInput.value > 0 && textInput.value > 0) {
+    console.log('if')
+  } else if (minutesInput.value > 0 && secondsInput.value > 0 && textInput.value.length > 0) {
     generateTimerPage();
-    warningPopUp.innerHTML = "";
+    console.log('else if')
   }
 }
+
 
 function checkCategoryBtns() {
   if (studyButton.classList.contains('active') || meditateButton.classList.contains('active') || exerciseButton.classList.contains('active')) {
@@ -84,8 +86,8 @@ function checkCategoryBtns() {
 }
 
 function generateTimerPage() {
+  console.log('generateTimerPage fired')
   // 4th changeCircleColor()
-  changeCircleColor();
   timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
   <p class="timer" id="timer"><span id="minutes">${minutesInput.value}:</span><span id="seconds">${secondsInput.value}</span></p>
   <div class="timer-circle-holder" id="timer-circle-holder">
@@ -93,12 +95,15 @@ function generateTimerPage() {
       <p class="start-complete" id="start-complete">start</p>
     </div>
   </div>`
+  changeCircleColor();
 }
 
 //2nd add 3 css classes for different color circle
 
 //3rd create new function changeCircleColor
 function changeCircleColor() {
+  var timerCircle = document.getElementById('timer-circle');
+  console.log('changeCircleColor fired', timerCircle)
   if (circleColor === 'green') {
     timerCircle.classList.add('green-circle');
   } else if (circleColor === 'purple') {

@@ -245,6 +245,18 @@ aside {
   border-radius: 100%;
 }
 
+.green-circle {
+  border: solid 2px #B3FD78;
+}
+
+.purple-circle {
+  border: solid 2px #C278FD;
+}
+
+.pink-circle {
+  border: solid 2px #FD8078;
+}
+
 .start-complete {
   justify-content: center;
   text-transform: uppercase;

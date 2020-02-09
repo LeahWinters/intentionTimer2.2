@@ -1,14 +1,16 @@
-var textInput = document.getElementById("text-input");
-var minutesInput = document.getElementById("minutes-input");
-var secondsInput = document.getElementById("seconds-input");
-var studyButton = document.getElementById("study");
-var meditateButton = document.getElementById("meditate");
-var exerciseButton = document.getElementById("exercise");
+var textInput = document.getElementById('text-input');
+var minutesInput = document.getElementById('minutes-input');
+var secondsInput = document.getElementById('seconds-input');
+var studyButton = document.getElementById('study');
+var meditateButton = document.getElementById('meditate');
+var exerciseButton = document.getElementById('exercise');
 var boxArray = [studyButton, meditateButton, exerciseButton];
-var startActBtn = document.getElementById("start-act-btn");
-var activeBtn = document.querySelector(".active");
-var warningPopUp = document.getElementById("warning-pop-up");
-var timerPage = document.getElementById("create-new-activity");
+var startActBtn = document.getElementById('start-act-btn');
+var activeBtn = document.querySelector('.active');
+var warningPopUp = document.getElementById('warning-pop-up');
+var timerPage = document.getElementById('create-new-activity');
+// 1st make grabber for timerCircle
+var timerCircle = document.getElementById('timer-circle');
 var circleColor = null;
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
@@ -18,13 +20,18 @@ document.addEventListener('click', handleClick);
 function handleClick(event) {
   if (event.target.classList.contains('study')) {
     changeColors(event);
+    // change circleColor to green
+    circleColor = "green";
   } else if (event.target.classList.contains('meditate')) {
     changeColors(event);
+    // change circleColor to purple
+    circleColor = "purple";
   } else if (event.target.classList.contains('exercise')) {
     changeColors(event);
+    // change circleColor to pink circleColor = "pink"
+    circleColor = "pink";
   } else if (event.target.classList.contains('start-act-btn')) {
-    checkInputFeilds(event);
-    // generateTimerPage();
+    checkInputFields(event);
   }
 }
 
@@ -56,27 +63,29 @@ function onlyNumbersCheck(event) {
   secondsInput.value = replaceSecValue;
 }
 
-function checkInputFeilds(e) {
-  e.preventDefault();
+function checkInputFields(event) {
+  event.preventDefault();
   var areBtnsClicked = checkCategoryBtns();
   if (minutesInput.value == 0 || secondsInput.value == 0 || textInput.value == 0 || areBtnsClicked === false){
     warningPopUp.innerHTML = `<img src="./assets/warning.svg" class="warning-img" alt="warning img">
     <p class="warning">Please fill out all information!</p>`;
   } else if (minutesInput.value > 0 && secondsInput.value > 0 && textInput.value > 0) {
-    console.log("im n it")
     generateTimerPage();
+    warningPopUp.innerHTML = "";
   }
 }
 
 function checkCategoryBtns() {
   if (studyButton.classList.contains('active') || meditateButton.classList.contains('active') || exerciseButton.classList.contains('active')) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 
 function generateTimerPage() {
+  // 4th changeCircleColor()
+  changeCircleColor();
   timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
   <p class="timer" id="timer"><span id="minutes">${minutesInput.value}:</span><span id="seconds">${secondsInput.value}</span></p>
   <div class="timer-circle-holder" id="timer-circle-holder">
@@ -85,3 +94,20 @@ function generateTimerPage() {
     </div>
   </div>`
 }
+
+//2nd add 3 css classes for different color circle
+
+//3rd create new function changeCircleColor
+function changeCircleColor() {
+  if (circleColor === 'green') {
+    timerCircle.classList.add('green-circle');
+  } else if (circleColor === 'purple') {
+    timerCircle.classList.add('purple-circle');
+  } else if (circleColor === 'pink') {
+    timerCircle.classList.add('pink-circle');
+  }
+}
+//conditionals (if/else) depending on cirlceColor variable
+//if circleColor is pink
+//timerCircle.classList.add('pink-circle') class of pink-color to timer-circle
+//

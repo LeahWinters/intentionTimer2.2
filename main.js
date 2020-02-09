@@ -8,6 +8,8 @@ var boxArray = [studyButton, meditateButton, exerciseButton];
 var startActBtn = document.getElementById("start-act-btn");
 var activeBtn = document.querySelector(".active");
 var warningPopUp = document.getElementById("warning-pop-up");
+var timerPage = document.getElementById("create-new-activity");
+var circleColor = null;
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
 secondsInput.addEventListener('keyup', onlyNumbersCheck);
@@ -22,6 +24,7 @@ function handleClick(event) {
     changeColors(event);
   } else if (event.target.classList.contains('start-act-btn')) {
     checkInputFeilds(event);
+    // generateTimerPage();
   }
 }
 
@@ -60,7 +63,8 @@ function checkInputFeilds(e) {
     warningPopUp.innerHTML = `<img src="./assets/warning.svg" class="warning-img" alt="warning img">
     <p class="warning">Please fill out all information!</p>`;
   } else if (minutesInput.value > 0 && secondsInput.value > 0 && textInput.value > 0) {
-    warningPopUp.innerHTML = '';
+    console.log("im n it")
+    generateTimerPage();
   }
 }
 
@@ -70,4 +74,14 @@ function checkCategoryBtns() {
   } else {
     return false
   }
+}
+
+function generateTimerPage() {
+  timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
+  <p class="timer" id="timer"><span id="minutes">${minutesInput.value}:</span><span id="seconds">${secondsInput.value}</span></p>
+  <div class="timer-circle-holder" id="timer-circle-holder">
+    <div class="timer-circle" id="timer-circle" role="button">
+      <p class="start-complete" id="start-complete">start</p>
+    </div>
+  </div>`
 }

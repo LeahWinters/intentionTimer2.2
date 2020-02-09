@@ -10,6 +10,7 @@ var activeBtn = document.querySelector('.active');
 var warningPopUp = document.getElementById('warning-pop-up');
 var timerPage = document.getElementById('create-new-activity');
 var circleColor = null;
+// var startTimerBtn = document.getElementById('timer-circle');
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
 secondsInput.addEventListener('keyup', onlyNumbersCheck);
@@ -27,6 +28,8 @@ function handleClick(event) {
     circleColor = 'pink';
   } else if (event.target.classList.contains('start-act-btn')) {
     checkInputFields(event);
+  } else if (event.target.classList.contains('timer-circle')) {
+    startTimerCountDown(event);
   }
 }
 
@@ -98,4 +101,8 @@ function changeCircleColor() {
   } else if (circleColor === 'pink') {
     timerCircle.classList.add('pink-circle');
   }
+}
+
+function startTimerCountDown() {
+  
 }

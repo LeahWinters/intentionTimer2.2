@@ -136,6 +136,8 @@ input {
   border: none;
   border-bottom: 1px solid #CBC9CF;
   color: #FFF;
+  font-size: 1em;
+  height: 25px;
 }
 
 .input-time {

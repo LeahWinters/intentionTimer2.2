@@ -109,7 +109,7 @@ function startTimerCountDown() {
   var totalTime = (parseInt(minutesInput.value) * 60) + parseInt(secondsInput.value);
   var secondsHolder = parseInt(totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60);
   var minutesHolder = (totalTime - (totalTime % 60)) / 60;
-  setInterval(function() {
+  var timer = setInterval(function() {
     console.log(minutesHolder)
     timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
     <p class="timer" id="timer"><span id="minutes">${(totalTime - (totalTime % 60)) / 60}:</span><span id="seconds">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60}</span></p>
@@ -120,8 +120,8 @@ function startTimerCountDown() {
     </div>`
     totalTime--;
     if (totalTime < 0) {
-      alert("Congradualtions");
-
+      alert("congratulations");
+      clearInterval(timer);
       return;
     }
   }, 1000);

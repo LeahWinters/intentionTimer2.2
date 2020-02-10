@@ -12,6 +12,7 @@ var timerPage = document.getElementById('create-new-activity');
 var circleColor = null;
 var minutesHolder = document.getElementById('minutes');
 var secondsHolder = document.getElementById('seconds');
+var completeMessage = document.getElementById('start-complete');
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
 secondsInput.addEventListener('keyup', onlyNumbersCheck);
@@ -121,9 +122,10 @@ function startTimerCountDown() {
     changeCircleColor();
     totalTime--;
     if (totalTime < 0) {
-      alert("congratulations");
+      alert("Congratulations, you completed your task!");
       clearInterval(timer);
       return;
     }
+    // completeMessage.innerHTML = `<p class="start-complete" id="start-complete">complete</p>`;
   }, 1000);
 }

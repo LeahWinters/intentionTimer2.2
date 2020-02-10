@@ -10,6 +10,8 @@ var activeBtn = document.querySelector('.active');
 var warningPopUp = document.getElementById('warning-pop-up');
 var timerPage = document.getElementById('create-new-activity');
 var circleColor = null;
+var minutesHolder = document.getElementById('minutes');
+var secondsHolder = document.getElementById('seconds');
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
 secondsInput.addEventListener('keyup', onlyNumbersCheck);
@@ -27,6 +29,8 @@ function handleClick(event) {
     circleColor = 'pink';
   } else if (event.target.classList.contains('start-act-btn')) {
     checkInputFields(event);
+  } else if (event.target.classList.contains('timer-circle')) {
+    startTimerCountDown(event);
   }
 }
 
@@ -79,13 +83,17 @@ function checkCategoryBtns() {
 }
 
 function generateTimerPage() {
+  // minutesInput.value = parseInt(minutesInput.value);
+  // secondsInput.value = parseInt(secondsInput.value);
+  var totalTime = parseInt((minutesInput.value * 60) + secondsInput.value);
+  var secondsHolder = totalTime % 60;
   timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
-  <p class="timer" id="timer"><span id="minutes">${minutesInput.value}:</span><span id="seconds">${secondsInput.value}</span></p>
-  <div class="timer-circle-holder" id="timer-circle-holder">
-    <div class="timer-circle" id="timer-circle" role="button">
-      <p class="start-complete" id="start-complete">start</p>
-    </div>
-  </div>`
+  <p class="timer" id="timer"><span id="minutes">${minutesInput.value}:</span><span id="seconds">${secondsHolder > 9 ? secondsHolder : "0" + secondsHolder % 60}</span></p>
+    <div class="timer-circle-holder" id="timer-circle-holder">
+      <div class="timer-circle" id="timer-circle" role="button">
+        <p class="start-complete" id="start-complete">start</p>
+      </div>
+    </div>`
   changeCircleColor();
 }
 
@@ -98,4 +106,27 @@ function changeCircleColor() {
   } else if (circleColor === 'pink') {
     timerCircle.classList.add('pink-circle');
   }
+}
+
+function startTimerCountDown() {
+  var totalTime = parseInt((minutesInput.value * 60) + secondsInput.value);
+  var secondsHolder = parseInt(totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60);
+  console.log(typeof secondsHolder);
+  var minutesHolder = (totalTime - (totalTime % 60)) / 60;
+  setInterval(function() {
+    console.log(minutesHolder)
+    timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
+    <p class="timer" id="timer"><span id="minutes">${(totalTime - (totalTime % 60)) / 60}:</span><span id="seconds">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60}</span></p>
+    <div class="timer-circle-holder" id="timer-circle-holder">
+      <div class="timer-circle" id="timer-circle" role="button">
+        <p class="start-complete" id="start-complete">start</p>
+      </div>
+    </div>`
+    console.log(typeof totalTime)
+    totalTime--;
+    if (totalTime < 0) {
+      alert("Congradualtions");
+      return;
+    }
+  }, 1000);
 }

@@ -6,6 +6,7 @@ var meditateButton = document.getElementById('meditate');
 var exerciseButton = document.getElementById('exercise');
 var boxArray = [studyButton, meditateButton, exerciseButton];
 var startActBtn = document.getElementById('start-act-btn');
+var currentActivityTitle = document.getElementById('new-activity');
 var activeBtn = document.querySelector('.active');
 var warningPopUp = document.getElementById('warning-pop-up');
 var timerPage = document.getElementById('create-new-activity');
@@ -91,7 +92,8 @@ function generateTimerPage(totalTime) {
       <div class="timer-circle" id="timer-circle" role="button">
         <p class="start-complete" id="start-complete">start</p>
       </div>
-    </div>`
+    </div>`;
+  currentActivityTitle.innerHTML = "Current Activity";
   changeCircleColor();
 }
 

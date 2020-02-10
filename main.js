@@ -118,6 +118,7 @@ function startTimerCountDown() {
         <p class="start-complete" id="start-complete">start</p>
       </div>
     </div>`
+    changeCircleColor();
     totalTime--;
     if (totalTime < 0) {
       alert("congratulations");

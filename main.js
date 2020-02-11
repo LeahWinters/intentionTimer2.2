@@ -33,6 +33,8 @@ function handleClick(event) {
     checkInputFields(event);
   } else if (event.target.classList.contains('timer-circle')) {
     startTimerCountDown(event);
+  } else if (event.target.classList.contains('log-act-btn')) {
+    logActivity(event)
   }
 }
 
@@ -93,9 +95,8 @@ function generateTimerPage(totalTime) {
         <p class="start-complete" id="start-complete">start</p>
       </div>
     </div>
-    <button class="log-act-btn" id="log-act-btn">
-      log activity
-    </button>`;
+    <div id="log-btn-holder" class="log-btn-holder">
+    </div>`;
   currentActivityTitle.innerHTML = 'Current Activity';
   changeCircleColor();
 }
@@ -122,7 +123,9 @@ function startTimerCountDown() {
       <div class="timer-circle" id="timer-circle" role="button">
         <p class="start-complete" id="start-complete">start</p>
       </div>
-    </div>`
+    </div>
+    <div id="log-btn-holder" class="log-btn-holder">
+    </div>`;
     changeCircleColor();
     totalTime--;
     if (totalTime < 0) {
@@ -135,5 +138,19 @@ function startTimerCountDown() {
 
 function finishActivityAlert() {
   var completeMessage = document.getElementById('start-complete');
-  completeMessage.innerText = "complete!";
+  completeMessage.innerText = 'complete!';
+  var logActivityBtn = document.getElementById('log-btn-holder');
+  logActivityBtn.innerHTML = `<button class="log-act-btn" id="log-act-btn">
+    log activity
+  </button>`;
+}
+
+// function logActivity() {
+//   timerPage.innerHTML = `<button class="create-new-act" id="create-new-act">create new activity</button>`;
+//   currentActivityTitle.innerHTML = 'Completed Activity';
+// }
+
+function savePastActivity() {
+  var pastActivitySection = document.getElementById('past-act-section');
+  pastActivitySection.innerHTML = ``
 }

@@ -281,10 +281,40 @@ aside {
   cursor: pointer;
   display: flex;
   font-size: 19px;
-  height: 7%;
+  height: 43px;
   justify-content: center;
   margin-top: 49px;
   margin-left: 32%;
   text-transform: uppercase;
   width: 38%;
+}
+
+.create-new-act {
+  border-radius: 4px;
+  color: #2B2733;
+  cursor: pointer;
+  display: flex;
+  font-size: 19px;
+  height: 7%;
+  text-transform: uppercase;
+  width: 47%;
+  justify-content: center;
+  margin-top: 6%;
+  margin-left: 28%;
+}
+
+.logged-act-card {
+  
+}
+
+.category-name {
+
+}
+
+.logged-time {
+
+}
+
+.activity-name {
+
 }

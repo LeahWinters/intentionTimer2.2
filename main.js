@@ -10,10 +10,11 @@ var currentActivityTitle = document.getElementById('new-activity');
 var activeBtn = document.querySelector('.active');
 var warningPopUp = document.getElementById('warning-pop-up');
 var timerPage = document.getElementById('create-new-activity');
-var circleColor = null;
+var circleColor;
 var minutesHolder = document.getElementById('minutes');
 var secondsHolder = document.getElementById('seconds');
-
+var activityColor;
+var categoryName;
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
 secondsInput.addEventListener('keyup', onlyNumbersCheck);
@@ -23,17 +24,19 @@ function handleClick(event) {
   if (event.target.classList.contains('study')) {
     changeColors(event);
     circleColor = 'green';
+    categoryName = 'Study';
   } else if (event.target.classList.contains('meditate')) {
     changeColors(event);
     circleColor = 'purple';
+    categoryName = 'Meditate';
   } else if (event.target.classList.contains('exercise')) {
     changeColors(event);
     circleColor = 'pink';
+    categoryName = 'Exercise';
   } else if (event.target.classList.contains('start-act-btn')) {
     checkInputFields(event);
   } else if (event.target.classList.contains('timer-circle')) {
     startTimerCountDown(event);
-
   } else if (event.target.classList.contains('log-act-btn')) {
     logActivity(event);
   } else if (event.target.classList.contains('create-new-act')) {
@@ -101,6 +104,7 @@ function generateTimerPage(totalTime) {
     <div id="log-btn-holder" class="log-btn-holder">
     </div>`;
   currentActivityTitle.innerHTML = 'Current Activity';
+  console.log(document.getElementById('timer-circle').classList);
   changeCircleColor();
 }
 
@@ -108,10 +112,13 @@ function changeCircleColor() {
   var timerCircle = document.getElementById('timer-circle');
   if (circleColor === 'green') {
     timerCircle.classList.add('green-circle');
+    activityColor = 'green-border';
   } else if (circleColor === 'purple') {
     timerCircle.classList.add('purple-circle');
+    activityColor = 'purple-border';
   } else if (circleColor === 'pink') {
     timerCircle.classList.add('pink-circle');
+    activityColor = 'pink-border';
   }
 }
 
@@ -159,12 +166,13 @@ function savePastActivity() {
   var pastActivitySection = document.getElementById('past-act-section');
   pastActivitySection.innerHTML = `<h2 class="past-activities">Past Activities</h2>
   <section class="past-act-cards-holder">
-    <div class="logged-act-card">
-      <p class="category-name">category name</p>
+    <div class="logged-act-card" id=${activityColor}>
+      <p class="category-name">${categoryName}</p>
       <p class="logged-time"><span class="logged-min">${(totalTime - (totalTime % 60)) / 60} minutes </span><span class="logged-sec">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60} seconds</span></p>
     </div>
     <p class="activity-name">${textInput.value}</p>
   </section>`;
+  console.log(activityColor);
 }
 
 function bringUserToHomePage() {

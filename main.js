@@ -33,8 +33,11 @@ function handleClick(event) {
     checkInputFields(event);
   } else if (event.target.classList.contains('timer-circle')) {
     startTimerCountDown(event);
+
   } else if (event.target.classList.contains('log-act-btn')) {
-    logActivity(event)
+    logActivity(event);
+  } else if (event.target.classList.contains('create-new-act')) {
+    bringUserToHomePage(event);
   }
 }
 
@@ -145,12 +148,58 @@ function finishActivityAlert() {
   </button>`;
 }
 
-// function logActivity() {
-//   timerPage.innerHTML = `<button class="create-new-act" id="create-new-act">create new activity</button>`;
-//   currentActivityTitle.innerHTML = 'Completed Activity';
-// }
+function logActivity() {
+  timerPage.innerHTML = `<button class="create-new-act" id="create-new-act">create new activity</button>`;
+  currentActivityTitle.innerHTML = 'Completed Activity';
+  savePastActivity();
+}
 
 function savePastActivity() {
+  var totalTime = (parseInt(minutesInput.value) * 60) + parseInt(secondsInput.value);
   var pastActivitySection = document.getElementById('past-act-section');
-  pastActivitySection.innerHTML = ``
+  pastActivitySection.innerHTML = `<h2 class="past-activities">Past Activities</h2>
+  <section class="past-act-cards-holder">
+    <div class="logged-act-card">
+      <p class="category-name">category name</p>
+      <p class="logged-time"><span class="logged-min">${(totalTime - (totalTime % 60)) / 60} minutes </span><span class="logged-sec">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60} seconds</span></p>
+    </div>
+    <p class="activity-name">${textInput.value}</p>
+  </section>`;
+}
+
+function bringUserToHomePage() {
+  var backToHomePage = document.getElementById('home-page');
+  backToHomePage.innerHTML = `<h2 class="new-activity" id="new-activity">New Activity</h2>
+  <section class="create-new-activity card-shadow" id="create-new-activity">
+    <p>Select a category:</p>
+    <section class="category-btn">
+      <button id="study" class="study" type="button">
+        <img class="study-img" src="./assets/study.svg" alt="study-img">
+        <p class="labels study-label">Study</p>
+      </button>
+      <button id="meditate" class="meditate" type="button">
+        <img class="meditate-img" src="./assets/meditate.svg" alt="meditate-img">
+        <p class="labels meditate-label">Meditate</p>
+      </button>
+      <button id="exercise" class="exercise" type="button">
+        <img class="exercise-img" src="./assets/exercise.svg" alt="exercise-img">
+        <p class="labels exercise-label">Exercise</p>
+      </button>
+    </section>
+    <p class="what-to-accomplish">What would you like to accomplish during this time?</p>
+    <input id="text-input" type="text" class="accomplish-input">
+    <div class="all-time-input">
+      <div class="time-input minutes">
+        <p class="time-name">Minutes</p>
+        <input id="minutes-input" class="input-time" type="number" name="minutes" min=0 value="">
+      </div>
+      <div class="time-input seconds">
+        <p class="time-name">Seconds</p>
+        <input id="seconds-input" class="input-time" type="number" name="seconds" min=0 value="">
+      </div>
+    </div>
+    <div class="warning-pop-up" id="warning-pop-up">
+    </div>
+    <button type="button" id="start-act-btn" class="start-act-btn" name="Start Activity">Start Activity</button>
+  </section>`;
 }

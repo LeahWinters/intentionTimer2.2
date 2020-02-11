@@ -327,12 +327,20 @@ aside {
   color: #CBC9CF;
   font-size: 1.3em;
   font-weight: 300;
-  margin: 0px 10px 0px;
+  margin: 4px 10px 0px;
 }
 
 .activity-name {
   color: #CBC9CF;
   font-size: 1.1em;
   font-weight: 300;
-  margin: 9px 20px 0px;
+  margin: 7px 20px 0px;
+}
+
+.logged-min {
+  text-transform: uppercase;
+}
+
+.logged-sec {
+  text-transform: uppercase;
 }

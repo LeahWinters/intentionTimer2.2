@@ -13,7 +13,7 @@ var timerPage = document.getElementById('create-new-activity');
 var circleColor = null;
 var minutesHolder = document.getElementById('minutes');
 var secondsHolder = document.getElementById('seconds');
-var completeMessage = document.getElementById('start-complete');
+
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
 secondsInput.addEventListener('keyup', onlyNumbersCheck);
@@ -113,7 +113,6 @@ function startTimerCountDown() {
   var secondsHolder = parseInt(totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60);
   var minutesHolder = (totalTime - (totalTime % 60)) / 60;
   var timer = setInterval(function() {
-    console.log(minutesHolder)
     timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
     <p class="timer" id="timer"><span id="minutes">${(totalTime - (totalTime % 60)) / 60}:</span><span id="seconds">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60}</span></p>
     <div class="timer-circle-holder" id="timer-circle-holder">
@@ -124,10 +123,14 @@ function startTimerCountDown() {
     changeCircleColor();
     totalTime--;
     if (totalTime < 0) {
-      alert("Congratulations, you completed your task!");
       clearInterval(timer);
+      finishActivityAlert();
       return;
     }
-    // completeMessage.innerHTML = `<p class="start-complete" id="start-complete">complete</p>`;
   }, 1000);
+}
+
+function finishActivityAlert() {
+  var completeMessage = document.getElementById('start-complete');
+  completeMessage.innerText = "complete!";
 }

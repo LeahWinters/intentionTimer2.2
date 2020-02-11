@@ -36,7 +36,7 @@ header {
 
 h1 {
   font-size: 22px;
-  font-weight:300;
+  font-weight: 300;
   letter-spacing: 1.5px;
 }
 
@@ -209,7 +209,8 @@ aside {
 }
 
 .past-activities {
-  padding: 25px;
+  padding: 18px 25px 10px;
+  margin-bottom: 0;
 }
 
 .no-activities {
@@ -272,4 +273,74 @@ aside {
   display: flex;
   font-size: 2em;
   margin-top: 37%;
+}
+
+.log-act-btn {
+  border: solid 1px pink;
+  border-radius: 4px;
+  color: #2B2733;
+  cursor: pointer;
+  display: flex;
+  font-size: 19px;
+  height: 43px;
+  justify-content: center;
+  margin-top: 49px;
+  margin-left: 32%;
+  text-transform: uppercase;
+  width: 38%;
+}
+
+.create-new-act {
+  border-radius: 4px;
+  color: #2B2733;
+  cursor: pointer;
+  display: flex;
+  font-size: 19px;
+  height: 7%;
+  text-transform: uppercase;
+  width: 47%;
+  justify-content: center;
+  margin-top: 6%;
+  margin-left: 28%;
+}
+
+.past-act-cards-holder {
+  background-color: #46424D;
+  border-radius: 4px;
+  width: 90%;
+  height: 13%;
+  align-self: center;
+}
+
+.logged-act-card {
+  border-right: solid 5px #FFF;
+  margin: 0px 10px 0px;
+}
+
+.category-name {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 10px 10px 2px;
+}
+
+.logged-time {
+  color: #CBC9CF;
+  font-size: 1.3em;
+  font-weight: 300;
+  margin: 4px 10px 0px;
+}
+
+.activity-name {
+  color: #CBC9CF;
+  font-size: 1.1em;
+  font-weight: 300;
+  margin: 7px 20px 0px;
+}
+
+.logged-min {
+  text-transform: uppercase;
+}
+
+.logged-sec {
+  text-transform: uppercase;
 }

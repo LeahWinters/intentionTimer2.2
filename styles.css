@@ -273,3 +273,18 @@ aside {
   font-size: 2em;
   margin-top: 37%;
 }
+
+.log-act-btn {
+  border: solid 1px pink;
+  border-radius: 4px;
+  color: #2B2733;
+  cursor: pointer;
+  display: flex;
+  font-size: 19px;
+  height: 7%;
+  justify-content: center;
+  margin-top: 49px;
+  margin-left: 32%;
+  text-transform: uppercase;
+  width: 38%;
+}

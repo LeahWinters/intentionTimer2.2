@@ -92,8 +92,11 @@ function generateTimerPage(totalTime) {
       <div class="timer-circle" id="timer-circle" role="button">
         <p class="start-complete" id="start-complete">start</p>
       </div>
-    </div>`;
-  currentActivityTitle.innerHTML = "Current Activity";
+    </div>
+    <button class="log-act-btn" id="log-act-btn">
+      log activity
+    </button>`;
+  currentActivityTitle.innerHTML = 'Current Activity';
   changeCircleColor();
 }
 

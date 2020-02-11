@@ -36,7 +36,7 @@ header {
 
 h1 {
   font-size: 22px;
-  font-weight:300;
+  font-weight: 300;
   letter-spacing: 1.5px;
 }
 
@@ -209,7 +209,8 @@ aside {
 }
 
 .past-activities {
-  padding: 25px;
+  padding: 18px 25px 10px;
+  margin-bottom: 0;
 }
 
 .no-activities {
@@ -303,18 +304,35 @@ aside {
   margin-left: 28%;
 }
 
+.past-act-cards-holder {
+  background-color: #46424D;
+  border-radius: 4px;
+  width: 90%;
+  height: 13%;
+  align-self: center;
+}
+
 .logged-act-card {
-  
+  border-right: solid 5px #FFF;
+  margin: 0px 10px 0px;
 }
 
 .category-name {
-
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 10px 10px 2px;
 }
 
 .logged-time {
-
+  color: #CBC9CF;
+  font-size: 1.3em;
+  font-weight: 300;
+  margin: 0px 10px 0px;
 }
 
 .activity-name {
-
+  color: #CBC9CF;
+  font-size: 1.1em;
+  font-weight: 300;
+  margin: 9px 20px 0px;
 }

@@ -6,12 +6,14 @@ var meditateButton = document.getElementById('meditate');
 var exerciseButton = document.getElementById('exercise');
 var boxArray = [studyButton, meditateButton, exerciseButton];
 var startActBtn = document.getElementById('start-act-btn');
+var currentActivityTitle = document.getElementById('new-activity');
 var activeBtn = document.querySelector('.active');
 var warningPopUp = document.getElementById('warning-pop-up');
 var timerPage = document.getElementById('create-new-activity');
 var circleColor = null;
 var minutesHolder = document.getElementById('minutes');
 var secondsHolder = document.getElementById('seconds');
+
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
 secondsInput.addEventListener('keyup', onlyNumbersCheck);
@@ -90,7 +92,8 @@ function generateTimerPage(totalTime) {
       <div class="timer-circle" id="timer-circle" role="button">
         <p class="start-complete" id="start-complete">start</p>
       </div>
-    </div>`
+    </div>`;
+  currentActivityTitle.innerHTML = "Current Activity";
   changeCircleColor();
 }
 
@@ -110,7 +113,6 @@ function startTimerCountDown() {
   var secondsHolder = parseInt(totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60);
   var minutesHolder = (totalTime - (totalTime % 60)) / 60;
   var timer = setInterval(function() {
-    console.log(minutesHolder)
     timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
     <p class="timer" id="timer"><span id="minutes">${(totalTime - (totalTime % 60)) / 60}:</span><span id="seconds">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60}</span></p>
     <div class="timer-circle-holder" id="timer-circle-holder">
@@ -118,11 +120,17 @@ function startTimerCountDown() {
         <p class="start-complete" id="start-complete">start</p>
       </div>
     </div>`
+    changeCircleColor();
     totalTime--;
     if (totalTime < 0) {
-      alert("congratulations");
       clearInterval(timer);
+      finishActivityAlert();
       return;
     }
   }, 1000);
+}
+
+function finishActivityAlert() {
+  var completeMessage = document.getElementById('start-complete');
+  completeMessage.innerText = "complete!";
 }

@@ -106,6 +106,7 @@ img {
   border-radius: 5px;
   border: solid 2px #CBC9CF;
   color: #FFF;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 67px;
@@ -113,22 +114,26 @@ img {
   width: 157px;
 }
 
+.study.active,
+.meditate.active,
+.exercise.active {
+  cursor: pointer;
+  outline: 0;
+}
+
 .study.active {
   border: solid 2px #B3FD78;
   color: #B3FD78;
-  outline: 0;
 }
 
 .meditate.active {
   border: solid 2px #C278FD;
   color: #C278FD;
-  outline: 0;
 }
 
 .exercise.active {
   border: solid 2px #FD8078;
   color: #FD8078;
-  outline: 0;
 }
 
 input {
@@ -186,6 +191,7 @@ input {
   border-radius: 4px;
   bottom: 100px;
   color: #2B2733;
+  cursor: pointer;
   font-size: 19px;
   height: 38px;
   position: absolute;
@@ -242,9 +248,10 @@ aside {
 
 .timer-circle {
   border: solid 2px #FFF;
-  width: 100%;
-  height: 100%;
   border-radius: 100%;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
 }
 
 .green-circle {

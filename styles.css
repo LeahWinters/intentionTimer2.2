@@ -303,15 +303,16 @@ aside {
   margin-top: 6%;
 }
 
+/* logged activity cards */
+
 .past-act-cards-holder {
+  align-self: center;
   background-color: #46424D;
   border-radius: 4px;
-  width: 90%;
+  box-shadow: 10px 10px 5px -4px rgba(38,34,45,0.95);
   height: 13%;
-  align-self: center;
+  width: 90%;
 }
-
-/* logged activity cards */
 
 .logged-act-card {
   border-right: solid 5px #FFF;

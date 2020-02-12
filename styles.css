@@ -249,9 +249,10 @@ aside {
   width: 100%;
 }
 
-/* .timer-circle:active {
-  outline: thick double blue;
-} */
+.timer-circle:active {
+  border: solid 4px blue;
+  border-radius: 100%;
+}
 
 .green-circle {
   border: solid 2px #B3FD78;

@@ -95,7 +95,7 @@ function checkCategoryBtns() {
 function generateTimerPage(totalTime) {
   var secondsHolder = totalTime % 60;
   timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
-  <p class="timer" id="timer"><span id="minutes">${minutesInput.value}:</span><span id="seconds">${secondsHolder > 9 ? secondsHolder : "0" + secondsHolder % 60}</span></p>
+  <p class="timer" id="timer"><span id="minutes">${minutesInput.value > 9 ? minutesInput.value : "0" + minutesInput.value}:</span><span id="seconds">${secondsHolder > 9 ? secondsHolder : "0" + secondsHolder % 60}</span></p>
     <div class="timer-circle-holder" id="timer-circle-holder">
       <div class="timer-circle" id="timer-circle" role="button">
         <p class="start-complete" id="start-complete">start</p>
@@ -104,7 +104,6 @@ function generateTimerPage(totalTime) {
     <div id="log-btn-holder" class="log-btn-holder">
     </div>`;
   currentActivityTitle.innerHTML = 'Current Activity';
-  console.log(document.getElementById('timer-circle').classList);
   changeCircleColor();
 }
 
@@ -124,11 +123,9 @@ function changeCircleColor() {
 
 function startTimerCountDown() {
   var totalTime = (parseInt(minutesInput.value) * 60) + parseInt(secondsInput.value);
-  var secondsHolder = parseInt(totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60);
-  var minutesHolder = (totalTime - (totalTime % 60)) / 60;
   var timer = setInterval(function() {
     timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
-    <p class="timer" id="timer"><span id="minutes">${(totalTime - (totalTime % 60)) / 60}:</span><span id="seconds">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60}</span></p>
+    <p class="timer" id="timer"><span id="minutes">${(totalTime - (totalTime % 60)) / 60 > 9 ? (totalTime - (totalTime % 60)) / 60 : "0" + (totalTime - (totalTime % 60)) / 60}:</span><span id="seconds">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60}</span></p>
     <div class="timer-circle-holder" id="timer-circle-holder">
       <div class="timer-circle" id="timer-circle" role="button">
         <p class="start-complete" id="start-complete">start</p>
@@ -172,7 +169,6 @@ function savePastActivity() {
     </div>
     <p class="activity-name">${textInput.value}</p>
   </section>`;
-  console.log(activityColor);
 }
 
 function bringUserToHomePage() {

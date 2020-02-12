@@ -1,15 +1,3 @@
-/* Main background: #2B2733
-Text on main background: #CBC9CF
-Header, cards: #46424D
-Card shadow: #26222D
-Text on header and cards: #FFF
-Study: #B3FD78
-Meditate: #C278FD
-Exercise: #FD8078
-Error: #EFB7EC
-font-family: 'Montserrat', sans-serif;
-*/
-
 html {
   border: none;
 }
@@ -52,6 +40,8 @@ p {
 .whole-page {
   display:flex;
 }
+
+/* New Activity Section */
 
 main {
   display:flex;
@@ -200,6 +190,8 @@ input {
   width: 25%;
 }
 
+/* no logged activities */
+
 aside {
   display: flex;
   border-left: 3px solid #46424D;
@@ -229,6 +221,8 @@ aside {
   margin-bottom: 0;
 }
 
+/* timer page */
+
 .timer {
   display: flex;
   justify-content: center;
@@ -253,6 +247,11 @@ aside {
   cursor: pointer;
   height: 100%;
   width: 100%;
+}
+
+.timer-circle:active {
+  border: solid 4px blue;
+  border-radius: 100%;
 }
 
 .green-circle {
@@ -284,8 +283,8 @@ aside {
   font-size: 19px;
   height: 43px;
   justify-content: center;
-  margin-top: 49px;
   margin-left: 32%;
+  margin-top: 49px;
   text-transform: uppercase;
   width: 38%;
 }
@@ -300,8 +299,8 @@ aside {
   text-transform: uppercase;
   width: 47%;
   justify-content: center;
-  margin-top: 6%;
   margin-left: 28%;
+  margin-top: 6%;
 }
 
 .past-act-cards-holder {
@@ -312,9 +311,23 @@ aside {
   align-self: center;
 }
 
+/* logged activity cards */
+
 .logged-act-card {
   border-right: solid 5px #FFF;
   margin: 0px 10px 0px;
+}
+
+#green-border {
+  border-right: solid 5px #B3FD78;
+}
+
+#purple-border {
+  border-right: solid 5px #C278FD;
+}
+
+#pink-border {
+  border-right: solid 5px #FD8078;
 }
 
 .category-name {

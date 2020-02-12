@@ -10,10 +10,11 @@ var currentActivityTitle = document.getElementById('new-activity');
 var activeBtn = document.querySelector('.active');
 var warningPopUp = document.getElementById('warning-pop-up');
 var timerPage = document.getElementById('create-new-activity');
-var circleColor = null;
+var circleColor;
 var minutesHolder = document.getElementById('minutes');
 var secondsHolder = document.getElementById('seconds');
-
+var activityColor;
+var categoryName;
 
 minutesInput.addEventListener('keyup', onlyNumbersCheck);
 secondsInput.addEventListener('keyup', onlyNumbersCheck);
@@ -23,17 +24,19 @@ function handleClick(event) {
   if (event.target.classList.contains('study')) {
     changeColors(event);
     circleColor = 'green';
+    categoryName = 'Study';
   } else if (event.target.classList.contains('meditate')) {
     changeColors(event);
     circleColor = 'purple';
+    categoryName = 'Meditate';
   } else if (event.target.classList.contains('exercise')) {
     changeColors(event);
     circleColor = 'pink';
+    categoryName = 'Exercise';
   } else if (event.target.classList.contains('start-act-btn')) {
     checkInputFields(event);
   } else if (event.target.classList.contains('timer-circle')) {
     startTimerCountDown(event);
-
   } else if (event.target.classList.contains('log-act-btn')) {
     logActivity(event);
   } else if (event.target.classList.contains('create-new-act')) {
@@ -92,7 +95,7 @@ function checkCategoryBtns() {
 function generateTimerPage(totalTime) {
   var secondsHolder = totalTime % 60;
   timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
-  <p class="timer" id="timer"><span id="minutes">${minutesInput.value}:</span><span id="seconds">${secondsHolder > 9 ? secondsHolder : "0" + secondsHolder % 60}</span></p>
+  <p class="timer" id="timer"><span id="minutes">${minutesInput.value > 9 ? minutesInput.value : "0" + minutesInput.value}:</span><span id="seconds">${secondsHolder > 9 ? secondsHolder : "0" + secondsHolder % 60}</span></p>
     <div class="timer-circle-holder" id="timer-circle-holder">
       <div class="timer-circle" id="timer-circle" role="button">
         <p class="start-complete" id="start-complete">start</p>
@@ -108,20 +111,21 @@ function changeCircleColor() {
   var timerCircle = document.getElementById('timer-circle');
   if (circleColor === 'green') {
     timerCircle.classList.add('green-circle');
+    activityColor = 'green-border';
   } else if (circleColor === 'purple') {
     timerCircle.classList.add('purple-circle');
+    activityColor = 'purple-border';
   } else if (circleColor === 'pink') {
     timerCircle.classList.add('pink-circle');
+    activityColor = 'pink-border';
   }
 }
 
 function startTimerCountDown() {
   var totalTime = (parseInt(minutesInput.value) * 60) + parseInt(secondsInput.value);
-  var secondsHolder = parseInt(totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60);
-  var minutesHolder = (totalTime - (totalTime % 60)) / 60;
   var timer = setInterval(function() {
     timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
-    <p class="timer" id="timer"><span id="minutes">${(totalTime - (totalTime % 60)) / 60}:</span><span id="seconds">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60}</span></p>
+    <p class="timer" id="timer"><span id="minutes">${(totalTime - (totalTime % 60)) / 60 > 9 ? (totalTime - (totalTime % 60)) / 60 : "0" + (totalTime - (totalTime % 60)) / 60}:</span><span id="seconds">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60}</span></p>
     <div class="timer-circle-holder" id="timer-circle-holder">
       <div class="timer-circle" id="timer-circle" role="button">
         <p class="start-complete" id="start-complete">start</p>
@@ -159,8 +163,8 @@ function savePastActivity() {
   var pastActivitySection = document.getElementById('past-act-section');
   pastActivitySection.innerHTML = `<h2 class="past-activities">Past Activities</h2>
   <section class="past-act-cards-holder">
-    <div class="logged-act-card">
-      <p class="category-name">category name</p>
+    <div class="logged-act-card" id=${activityColor}>
+      <p class="category-name">${categoryName}</p>
       <p class="logged-time"><span class="logged-min">${(totalTime - (totalTime % 60)) / 60} minutes </span><span class="logged-sec">${totalTime % 60 > 9 ? totalTime % 60 : "0" + totalTime % 60} seconds</span></p>
     </div>
     <p class="activity-name">${textInput.value}</p>

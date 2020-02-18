@@ -104,6 +104,18 @@ img {
   width: 157px;
 }
 
+.study:hover {
+  border: solid 4px #D2FBC5;
+}
+
+.meditate:hover {
+  border: solid 4px #CCBDF3;
+}
+
+.exercise:hover {
+  border: solid 4px #ECB5D4;
+}
+
 .study.active,
 .meditate.active,
 .exercise.active {
@@ -190,6 +202,10 @@ input {
   width: 25%;
 }
 
+.start-act-btn:hover {
+  border: solid 4px blue;
+}
+
 /* no logged activities */
 
 aside {
@@ -249,9 +265,12 @@ aside {
   width: 100%;
 }
 
+.timer-circle:hover {
+  border: solid 4px blue;
+}
+
 .timer-circle:active {
   border: solid 4px blue;
-  border-radius: 100%;
 }
 
 .green-circle {
@@ -289,6 +308,10 @@ aside {
   width: 38%;
 }
 
+.log-act-btn:hover {
+  border: solid 4px blue;
+}
+
 .create-new-act {
   border-radius: 4px;
   color: #2B2733;
@@ -301,6 +324,10 @@ aside {
   justify-content: center;
   margin-left: 28%;
   margin-top: 6%;
+}
+
+.create-new-act:hover {
+  border: solid 4px blue;
 }
 
 /* logged activity cards */
@@ -357,4 +384,8 @@ aside {
 
 .logged-sec {
   text-transform: uppercase;
+}
+
+.displayNone {
+  display: none;
 }

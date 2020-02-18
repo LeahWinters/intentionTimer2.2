@@ -9,7 +9,7 @@ var startActBtn = document.getElementById('start-act-btn');
 var currentActivityTitle = document.getElementById('new-activity');
 var activeBtn = document.querySelector('.active');
 var warningPopUp = document.getElementById('warning-pop-up');
-var timerPage = document.getElementById('create-new-activity');
+var timerPage = document.getElementById('current-timer');
 var circleColor;
 var minutesHolder = document.getElementById('minutes');
 var secondsHolder = document.getElementById('seconds');
@@ -94,6 +94,10 @@ function checkCategoryBtns() {
 
 function generateTimerPage(totalTime) {
   var secondsHolder = totalTime % 60;
+  var backToHomePage = document.getElementById('home-page');
+  backToHomePage.classList.add('displayNone');
+  var countDownPage = document.getElementById('count-down-page');
+  countDownPage.classList.remove('displayNone');
   timerPage.innerHTML = `<p class="user-activity" id="user-activity">${textInput.value}</p>
   <p class="timer" id="timer"><span id="minutes">${minutesInput.value > 9 ? minutesInput.value : "0" + minutesInput.value}:</span><span id="seconds">${secondsHolder > 9 ? secondsHolder : "0" + secondsHolder % 60}</span></p>
     <div class="timer-circle-holder" id="timer-circle-holder">
@@ -103,7 +107,7 @@ function generateTimerPage(totalTime) {
     </div>
     <div id="log-btn-holder" class="log-btn-holder">
     </div>`;
-  currentActivityTitle.innerHTML = 'Current Activity';
+
   changeCircleColor();
 }
 
@@ -173,37 +177,19 @@ function savePastActivity() {
 
 function bringUserToHomePage() {
   var backToHomePage = document.getElementById('home-page');
-  backToHomePage.innerHTML = `<h2 class="new-activity" id="new-activity">New Activity</h2>
-  <section class="create-new-activity card-shadow" id="create-new-activity">
-    <p>Select a category:</p>
-    <section class="category-btn">
-      <button id="study" class="study" type="button">
-        <img class="study-img" src="./assets/study.svg" alt="study-img">
-        <p class="labels study-label">Study</p>
-      </button>
-      <button id="meditate" class="meditate" type="button">
-        <img class="meditate-img" src="./assets/meditate.svg" alt="meditate-img">
-        <p class="labels meditate-label">Meditate</p>
-      </button>
-      <button id="exercise" class="exercise" type="button">
-        <img class="exercise-img" src="./assets/exercise.svg" alt="exercise-img">
-        <p class="labels exercise-label">Exercise</p>
-      </button>
-    </section>
-    <p class="what-to-accomplish">What would you like to accomplish during this time?</p>
-    <input id="text-input" type="text" class="accomplish-input">
-    <div class="all-time-input">
-      <div class="time-input minutes">
-        <p class="time-name">Minutes</p>
-        <input id="minutes-input" class="input-time" type="number" name="minutes" min=0 value="">
-      </div>
-      <div class="time-input seconds">
-        <p class="time-name">Seconds</p>
-        <input id="seconds-input" class="input-time" type="number" name="seconds" min=0 value="">
-      </div>
-    </div>
-    <div class="warning-pop-up" id="warning-pop-up">
-    </div>
-    <button type="button" id="start-act-btn" class="start-act-btn" name="Start Activity">Start Activity</button>
-  </section>`;
+  backToHomePage.classList.remove("displayNone");
+  var countDownPage = document.getElementById('count-down-page');
+  countDownPage.classList.add('displayNone');
+  studyButton = document.getElementById('study');
+  clearInputsToHomePage();
 }
+
+function clearInputsToHomePage() {
+  textInput.value = '';
+  minutesInput.value = '';
+  secondsInput.value = '';
+  for (var i = 0; i < boxArray.length; i++) {
+      boxArray[i].classList.remove('active');
+      boxArray[i].firstElementChild.src = `./assets/${boxArray[i].id}.svg`;
+    }
+  }

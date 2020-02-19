@@ -1,6 +1,7 @@
 var textInput = document.getElementById('text-input');
 var minutesInput = document.getElementById('minutes-input');
 var secondsInput = document.getElementById('seconds-input');
+var timeInputs = document.querySelector('.all-time-input')
 var studyButton = document.getElementById('study');
 var meditateButton = document.getElementById('meditate');
 var exerciseButton = document.getElementById('exercise');
@@ -16,8 +17,7 @@ var secondsHolder = document.getElementById('seconds');
 var activityColor;
 var categoryName;
 
-minutesInput.addEventListener('keyup', onlyNumbersCheck);
-secondsInput.addEventListener('keyup', onlyNumbersCheck);
+timeInputs.addEventListener('keyup', onlyNumbersCheck);
 document.addEventListener('click', handleClick);
 
 function handleClick(event) {
@@ -107,7 +107,6 @@ function generateTimerPage(totalTime) {
     </div>
     <div id="log-btn-holder" class="log-btn-holder">
     </div>`;
-
   changeCircleColor();
 }
 
@@ -177,7 +176,7 @@ function savePastActivity() {
 
 function bringUserToHomePage() {
   var backToHomePage = document.getElementById('home-page');
-  backToHomePage.classList.remove("displayNone");
+  backToHomePage.classList.remove('displayNone');
   var countDownPage = document.getElementById('count-down-page');
   countDownPage.classList.add('displayNone');
   studyButton = document.getElementById('study');
